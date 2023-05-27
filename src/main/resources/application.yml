@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    url: jdbc:sqlite:${DB_FILE_PATH:local.db}
+
+logging:
+  level:
+    ROOT: INFO
+    net.romangr.propose_post_bot: ${BOT_LOG_LEVEL:INFO}
+
+telegram:
+  bot-username: ${TELEGRAM_BOT_USERNAME}
+  token: ${TELEGRAM_BOT_TOKEN}
+  proposals-channel-id: ${TELEGRAM_PROPOSALS_CHANNEL_ID}
+  main-channel-id: ${TELEGRAM_MAIN_CHANNEL_ID}
+  admin-ids-string: ${TELEGRAM_ADMIN_IDS:}
+  enable-admins-check: ${TELEGRAM_ENABLE_ADMINS_CHECK:true}
+  delete-after-post: ${TELEGRAM_DELETE_AFTER_POST:true}
+  number-of-requests-before-warning: ${TELEGRAM_NUMBER_OF_REQUESTS_BEFORE_WARNING:3}
+  warning-delimiter: "-+-+-+-"
+
+messages:
+  user-added-to-ban-list: "User is added to ban list"
+  message-published-to-main-channel: "Published"
+  welcome-message: |-
+    Hi %s!
+    With this bot you can propose a post to the channel...
+  publish-button: "Publish"
+  ban-button: "Ban"
+  no-photos-in-the-incoming-message-response: "Please send at least one photo to propose a post"
+  post-is-added-to-proposed-posts-list-response: "You post is added to the proposed posts list, thank you!"
+  number-of-messages-from-user-above-threshold-warning: "This user has already sent %d messages in the last 10 minutes"

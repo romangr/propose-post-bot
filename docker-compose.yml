@@ -1,0 +1,24 @@
+services:
+
+  propose-post-bot:
+    image: ghcr.io/romangr/propose-post-bot:latest
+    restart: unless-stopped
+    mem_limit: 75m
+    environment:
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
+      TELEGRAM_BOT_USERNAME: ${TELEGRAM_BOT_USERNAME}
+      TELEGRAM_PROPOSALS_CHANNEL_ID: ${TELEGRAM_PROPOSALS_CHANNEL_ID}
+      TELEGRAM_MAIN_CHANNEL_ID: ${TELEGRAM_MAIN_CHANNEL_ID}
+      TELEGRAM_ADMIN_IDS: ${TELEGRAM_ADMIN_IDS}
+      TELEGRAM_ENABLE_ADMINS_CHECK: ${TELEGRAM_ENABLE_ADMINS_CHECK}
+      TELEGRAM_DELETE_AFTER_POST: ${TELEGRAM_DELETE_AFTER_POST}
+      BOT_LOG_LEVEL: INFO
+      DB_FILE_PATH: "./local.db"
+    volumes:
+      - ./data/local.db:/workspace/local.db
+      - ./data/application.yml:/workspace/application.yml
+    logging:
+      driver: json-file
+      options:
+        max-size: 10M
+        max-file: "3"
